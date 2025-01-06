@@ -8,23 +8,36 @@ const chainMaker = {
   chain: [],
 
   getLength() {
-    return his.chain.length;
+    return this.chain.length;
   },
+
   addLink(value) {
-    this.chain.push(value);
+    if (value === undefined) {
+      this.chain.push('(  )');
+    } else {
+      this.chain.push(`( ${String(value)} )`);
+    }
+    return this; // Return this to allow chaining
+  },
+
+  removeLink(position) {
+    if (!Number.isInteger(position) || position <= 0 || position > this.chain.length) {
+      this.chain = [];
+      throw new Error("You can't remove incorrect link!");
+    }
+    this.chain.splice(position - 1, 1);
     return this;
   },
-  removeLink(/* position */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
-  },
+  
   reverseChain() {
     this.chain.reverse();
-    return this;
+    return this; // Return this to allow chaining
   },
+
   finishChain() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+    const result = this.chain.join('~~');
+    this.chain = []; // Reset the chain after finishing
+    return result;
   }
 };
 
