@@ -17,7 +17,7 @@ const chainMaker = {
     } else {
       this.chain.push(`( ${String(value)} )`);
     }
-    return this; // Return this to allow chaining
+    return this; 
   },
 
   removeLink(position) {
@@ -31,12 +31,12 @@ const chainMaker = {
   
   reverseChain() {
     this.chain.reverse();
-    return this; // Return this to allow chaining
+    return this; 
   },
 
   finishChain() {
     const result = this.chain.join('~~');
-    this.chain = []; // Reset the chain after finishing
+    this.chain = []; 
     return result;
   }
 };
